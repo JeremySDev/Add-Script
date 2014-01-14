@@ -2,86 +2,31 @@
 
 export PATH=/usr/sbin:/sbin:/usr/bin:/bin
 
+if [ "$#" != "2" ]; then
+    echo "Usage: $0 <Current Year> <Filename>"
+    exit 1
+fi
 #
 # The students' real names -- NO COMMAS
 #
-realNames=(
-"John Asawacharoenkun"
-"Amber Briggs"
-"Tyler Elliot"
-"Abigail Emrey"
-"Dylan Foster"
-"Meghan Galvin"
-"Tommy Ho"
-"Charles Hreha"
-"Ian Johnson",
-"Jordan Joseph"
-"Kerrie Kaiser"
-"Clinton Langston"
-"Brandon Piasecki"
-"Devin Ricker"
-"David Schumerth"
-"Sarah Simpson"
-"Avery Sluder"
-"Clifton West"
-"Christopher Wolf"
-"Terry Mitchell"
-"Jon Johnson"
-)
-
+realNames=(`cut -d, -f1 $2`)
+echo ${realNames[@]}
+echo ${#realNames[@]}
 
 #
 # The students' usernames
 #
-usernames=(
-"jasawacharoenkun1"
-"anbriggs1"
-"trelliot1"
-"aekmrey1"
-"dwfoster1"
-"mbgalvin"
-"tho2"
-"cahreha1"
-"injohnson2",
-"jcjoseph2"
-"kakaiser1"
-"cmlangston"
-"bjpiasecki"
-"dsricker"
-"daschumerth1"
-"sesimpson1"
-"adsluder1"
-"cwest2"
-"crwolf1"
-"tjmitchell1"
-"jwjohnson7"
-)
+usernames=(`cut -d, -f2 $2`)
+echo ${usernames[@]}
+echo ${#usernames[@]}
+#
+# The students' classification i.e. CS, minor, Math340 
+#
+types=(`cut -d, -f3 $2`)
+echo ${types[@]}
 
-types=(
-"CS"
-"CS"
-"CS"
-"PreCS"
-"PreCS"
-"CS"
-"CS"
-"CS"
-"CS"
-"Minor"
-"Minor"
-"PreCS"
-"PreCS"
-"CS"
-"EE"
-"Minor"
-"CS"
-"CS"
-"Music"
-"CS"
-"CS"
-)
-
-year=2013
+year=$1
+echo $year
 
 #
 # Make sure that both the 'realNames' and 'usernames' arrays are the same size.
@@ -90,7 +35,7 @@ year=2013
 #
 if [[ ${#realNames[*]} != ${#usernames[*]} ]]; then
     echo "Number of users does not match number of usernames"
-    exit 1
+    #exit 1
 fi
 
 #
