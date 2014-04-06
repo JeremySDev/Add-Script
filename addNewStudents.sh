@@ -9,24 +9,32 @@ fi
 #
 # The students' real names -- NO COMMAS
 #
-realNames=(`cut -d, -f1 $2`)
-echo ${realNames[@]}
+realNames=(`cut -d, -f1,2 $2 | sed 's/,//g'`)
+echo -e realNames: #${realNames[@]}
+printf -- '%s\n' "${realNames[@]}"
 echo ${#realNames[@]}
-
 #
 # The students' usernames
 #
-usernames=(`cut -d, -f2 $2`)
-echo ${usernames[@]}
+usernames=(`cut -d, -f3 $2`)
+#echo ${usernames[@]}
+echo -e username:
+printf -- '%s\n' "${usernames[@]}"
 echo ${#usernames[@]}
+echo ""
 #
 # The students' classification i.e. CS, minor, Math340 
 #
-types=(`cut -d, -f3 $2`)
+types=(`cut -d, -f4 $2`)
+echo -e types:
+#printf -- '%s\n' "${types[@]}"
 echo ${types[@]}
 
 year=$1
-echo $year
+echo
+echo year: $year
+echo
+
 
 #
 # Make sure that both the 'realNames' and 'usernames' arrays are the same size.

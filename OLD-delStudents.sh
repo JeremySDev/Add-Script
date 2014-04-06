@@ -2,120 +2,26 @@
 
 export PATH=/usr/sbin:/sbin:/usr/bin:/bin
 
-if [ "$#" != "1" ]; then
-    echo "Usage: $0 <Method of Delete>"
-    exit 1
-fi
-
-if [ "$1" = "[Cc][Vv][Ss]" ] 
-    read $file
-fi
-
-if [ "$1" = "" ] 
-    
-fi
-
-
-
-##################CVS####################3
-
-#
-# The students' real names -- NO COMMAS
-#
-realNames=(`cut -d, -f1,2 $2`)
-echo -e realNames: #${realNames[@]}
-printf -- '%s\n' "${realNames[@]}"
-echo ${#realNames[@]}
-#
-# The students' usernames
-#
-usernames=(`cut -d, -f3 $2`)
-#echo ${usernames[@]}
-echo -e username:
-printf -- '%s\n' "${usernames[@]}"
-echo ${#usernames[@]}
-echo ""
-#
-# The students' classification i.e. CS, minor, Math340 
-#
-types=(`cut -d, -f4 $2`)
-echo -e types:
-#printf -- '%s\n' "${types[@]}"
-echo ${types[@]}
-
-year=$1
-echo
-echo year: $year
-echo
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 #
 # The students' real names
 #
-#realNames=(
-#"John Asawacharoenkun"
-#)
+realNames=(
+"Test Student"
+)
 
 
 #
 # The students' usernames
 #
-#usernames=(
-#"jasawacharoenkun1"
-#)
+usernames=(
+"testytest"
+)
 
-#types=(
-#"CS"
-#)
+types=(
+"Semester"
+)
 
-#year=2014
+year=2013
 
 #
 # Make sure that both the 'realNames' and 'usernames' arrays are the same size.
