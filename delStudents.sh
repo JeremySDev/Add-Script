@@ -6,14 +6,19 @@ if [ "$#" != "1" ]; then
     echo "Usage: $0 <Method of Delete>"
     exit 1
 fi
-
-if [ "$1" = "[Cc][Vv][Ss]" ] 
-    read $file
+echo $1
+if [ "$1" = "[Cc][Ss][Vv]" ]; then 
+    echo cats
+    read file     
+    exit 0
 fi
 
-if [ "$1" = "" ] 
+#if [ "$1" = "" ] 
     
-fi
+#fi
+
+
+    read file     
 
 
 
@@ -22,24 +27,24 @@ fi
 #
 # The students' real names -- NO COMMAS
 #
-realNames=(`cut -d, -f1,2 $2`)
-echo -e realNames: #${realNames[@]}
+realNames=(`cut -d, -f1,2 $file`)
+echo -e REALNAMES: #${realNames[@]}
 printf -- '%s\n' "${realNames[@]}"
 echo ${#realNames[@]}
 #
 # The students' usernames
 #
-usernames=(`cut -d, -f3 $2`)
+usernames=(`cut -d, -f3 $file`)
 #echo ${usernames[@]}
-echo -e username:
+echo -e USERNAMES:
 printf -- '%s\n' "${usernames[@]}"
 echo ${#usernames[@]}
 echo ""
 #
 # The students' classification i.e. CS, minor, Math340 
 #
-types=(`cut -d, -f4 $2`)
-echo -e types:
+types=(`cut -d, -f4 $file`)
+echo -e TYPES:
 #printf -- '%s\n' "${types[@]}"
 echo ${types[@]}
 
@@ -137,15 +142,20 @@ fi
 #
 # Make sure that we can sudo successfully
 #
+confirm="N"
 sudo cat /dev/null
 if [[ $? == 0 ]]; then
+    echo "confrim deletion [y|n]"
+    read confirm
     for ((i = 0; i < ${#realNames[*]}; ++i)); do
         name="${realNames[$i]}"
         user="${usernames[$i]}"
-	other="${types[$i]},${year}"
-
-	sudo deluser ${user};
-	sudo rm -rf /home/${user};
+	    other="${types[$i]},${year}"
+        if [[ $confirm = "y" ]]; then 
+            #sudo deluser ${user};
+    	    echo deleting ${user}
+            #sudo rm -rf /home/${user};
+        fi
     done
 else
     echo "ERROR: Root access is required"
