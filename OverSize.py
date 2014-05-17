@@ -1,19 +1,17 @@
 __author__ = 'Jeremy Stilwell'
 import commands
-import os
 
-warningSize = "75000c"
+
+warningSize = "50000c"
 deleteSize = "100000c"
 
-#os.system("find '/home/jstilwell/test' -size +" + warningSize)
-print "files 50000 and above"
 warn = commands.getoutput("find '/home/jstilwell/test' -size +" + warningSize)
 delete = commands.getoutput("find '/home/jstilwell/test' -size +" + deleteSize)
 
 #holds all filenames
 fileArray = []
 user_array = []
-#turn the output of find into an array
+#turns the output of find into an array
 
 
 def turn_array(com):
@@ -54,3 +52,5 @@ turn_array(delete)
 find_users(fileArray)
 print fileArray
 print user_array
+
+#TODO email and delete files maybe not email user twice by doing bigger files first and deleteing then run the smaller find
