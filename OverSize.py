@@ -14,18 +14,26 @@ varfilename = ""
 
 #holds all filenames
 fileArray = []
-for i in f:
-    if i == '\n':
-        fileArray.append(varfilename)
-        varfilename = ""
-    else:
+
+
+def turn_array(com):
+    #iterator
+    j = 0
+
+    global varfilename
+
+    for i in com:
         varfilename += i
-    print varfilename
+        if i == '\n' or j == (f.__len__() - 1):
+            varfilename = varfilename.rstrip('\n')
+            fileArray.append(varfilename)
+            varfilename = ""
+        #print "vfn: ", varfilename
+        j += 1
+        #print "j: ", j
 
-
-print "f: ", f
+#print "f: ", f
 print "array: ", fileArray
-
 
 print
 print "files 100000 and above"
