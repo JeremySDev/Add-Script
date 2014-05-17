@@ -1,8 +1,16 @@
 __author__ = 'Jeremy Stilwell'
 import os
-import subprocess
 
-warningSize = 50000
+warningSize = "75000c"
+deleteSize = "100000c"
 
-os.system("find '/home' -size +$warningSize  | cut -d"/" -f3")
-#p = subprocess.call("find", "/home", "-size", +warningSize,  | cut -d"/" -f3")
+print "files 50000 and above"
+os.system("find '/home/jstilwell/test' -size +" + warningSize)
+os.popen("find '/home/jstilwell/test' -size +" + warningSize)
+
+
+
+print "files 100000 and above"
+os.system("find '/home/jstilwell/test' -size +" + deleteSize)
+#returns exit status
+#print p
