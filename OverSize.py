@@ -12,7 +12,7 @@ delete = commands.getoutput("find '/home/jstilwell/test' -size +" + deleteSize)
 
 #holds all filenames
 fileArray = []
-
+user_array = []
 #turn the output of find into an array
 
 
@@ -31,11 +31,26 @@ def turn_array(com):
             fileArray.append(varfilename)
             varfilename = ""
         j += 1
-turn_array(warn)
-print "array: ", fileArray
 
+
+def find_users(files):
+    for i in files:
+        len1 = i.__len__()
+        temp1 = i[6:len1]
+        temp2 = (temp1.partition('/'))
+        user_array.append(temp2[0])
+
+print "files 50000 and above"
+turn_array(warn)
+find_users(fileArray)
+print fileArray
+print user_array
 print
+fileArray = []
+user_array = []
+
 print "files 100000 and above"
-os.system("find '/home/jstilwell/test' -size +" + deleteSize)
-#returns exit status
-#print p
+turn_array(delete)
+find_users(fileArray)
+print fileArray
+print user_array
