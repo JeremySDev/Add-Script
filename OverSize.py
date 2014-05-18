@@ -1,5 +1,5 @@
 __author__ = 'Jeremy Stilwell'
-import commands
+import commands, re
 from sys import stdin
 
 warningSize = "50000c"
@@ -63,22 +63,25 @@ print userArray
 ########################################################################################################################
 if len(fileArray) == len(userArray):
     print
+    ####################################################################################################################
+    # iterates over the array of files and users so that the user can see if the files should be deleted
     for j in range(0, len(fileArray)):
         print "User: ", userArray[j], " File: ", fileArray[j], "will be deleted."
+    # ask if these are these files should be delete
     print "Delete Files [y/N]: "
-    stdin.read(1)
-    userinput = stdin.readline()
-
-    for j in range(0, len(fileArray)):
-        #f = commands.getstatusoutput("mv " + fileArray[j] + " ./trash")
-        #message for the user
-        msg = "Your file " + fileArray[j] + " has been removed because it was larger than the allowed size.\n " \
-                                            "Please contact your system administrator if you have questions. " \
-                                            "This is an automated message."
-        commands.getstatusoutput("echo -e " + msg + " | mutt -s 'Your File was Removed' " + userArray[j] +
-                                 "@agora.cs.wcu.edu")
-        f = "mv " + fileArray[j] + " ./trash"
-        print f
+    userinput = stdin.read(1)
+    if re.match("y|Y", userinput):
+    ####################################################################################################################
+        for j in range(0, len(fileArray)):
+            #f = commands.getstatusoutput("mv " + fileArray[j] + " ./trash")
+            #message for the user
+            msg = "Your file " + fileArray[j] + " has been removed because it was larger than the allowed size.\n " \
+                                                "Please contact your system administrator if you have questions. " \
+                                                "This is an automated message."
+            commands.getstatusoutput("echo -e " + msg + " | mutt -s 'Your File was Removed' " + userArray[j] +
+                                     "@agora.cs.wcu.edu")
+            f = "mv " + fileArray[j] + " ./trash"
+            print f
     print
     fileArray = []
     userArray = []
@@ -95,6 +98,7 @@ print userArray
 ########################################################################################################################
 if len(fileArray) == len(userArray):
     print
+    # iterates over the array of files and users so that they can be informed of their heinous crime
     for j in range(0, len(fileArray)):
         msg = "Your file " + fileArray[j] + "is larger than the recommended size.\n " \
                                             "Please contact your system administrator if you have questions. " \
@@ -105,7 +109,3 @@ else:
     size_error()
 ########################################################################################################################
 print
-
-
-
-#TODO email and delete files maybe not email user twice by doing bigger files first and deleteing then run the smaller find
