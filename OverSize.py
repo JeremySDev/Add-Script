@@ -93,8 +93,6 @@ warn = commands.getoutput("find '/home/jstilwell/test' -size +" + warningSize)
 print "files 50000 and above"
 turn_array(warn)
 find_users(fileArray)
-print fileArray
-print userArray
 ########################################################################################################################
 if len(fileArray) == len(userArray):
     print
