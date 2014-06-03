@@ -1,11 +1,12 @@
 __author__ = 'Jeremy Stilwell'
-import commands, re
+import commands
+import re
 from sys import stdin
 
 warningSize = "50000c"
 deleteSize = "100000c"
 
-
+directory = "'/home/jstilwell/test'"
 
 
 #holds all filenames
@@ -40,26 +41,35 @@ finds the users from an array of files passed in
 
 
 def find_users(files):
+    num = 6
     for i in files:
+        #get length of string
         len1 = i.__len__()
-        temp1 = i[6:len1]
+        #gets rid of the characters preceding the username
+        #TODO find length of chars preceding username
+        temp1 = i[num:len1]
+        #turns temp1 in to an array of strings based on a separator /
         temp2 = (temp1.partition('/'))
+        #gets the user name out of the array.
         userArray.append(temp2[0])
+
+"""
+method called when user array and file array are not hte same size
+"""
 
 
 def size_error():
     print "Size of file list and user list are not the same "
     exit()
 
-#echo cat | mutt -s "this is a test" jstilwell@agora.cs.wcu.edu
 ########################################################################################################################
-delete = commands.getoutput("find '/home/jstilwell/test' -size +" + deleteSize)
+delete = commands.getoutput("find " + directory + " -size +" + deleteSize)
 ########################################################################################################################
-print "files 100000 and above"
+#print "files 100000 and above"
 turn_array(delete)
 find_users(fileArray)
-print fileArray
-print userArray
+#print fileArray
+#print userArray
 ########################################################################################################################
 if len(fileArray) == len(userArray):
     print
@@ -88,9 +98,8 @@ if len(fileArray) == len(userArray):
 else:
     size_error()
 ########################################################################################################################
-warn = commands.getoutput("find '/home/jstilwell/test' -size +" + warningSize)
+warn = commands.getoutput("find " + directory + " -size +" + warningSize)
 ########################################################################################################################
-print "files 50000 and above"
 turn_array(warn)
 find_users(fileArray)
 ########################################################################################################################
