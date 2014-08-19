@@ -6,7 +6,8 @@ from sys import stdin
 warningSize = "50000c"
 deleteSize = "100000c"
 
-directory = "'/home/jstilwell/test'"
+#the name of the directory to run the script on
+directory = "''"
 
 
 #holds all filenames
