@@ -63,14 +63,14 @@ def size_error():
     print "Size of file list and user list are not the same "
     exit()
 
+#this part of the code deletes files if the user tells it to otherwise it will just warn
+#it doesn't actual delete files but moves them to a file in the directory of the script
 ########################################################################################################################
 delete = commands.getoutput("find " + directory + " -size +" + deleteSize)
 ########################################################################################################################
-#print "files 100000 and above"
+print "files 100000 and above"
 turn_array(delete)
 find_users(fileArray)
-#print fileArray
-#print userArray
 ########################################################################################################################
 if len(fileArray) == len(userArray):
     print
@@ -98,6 +98,8 @@ if len(fileArray) == len(userArray):
     userArray = []
 else:
     size_error()
+
+#this part of the code gives users a warning
 ########################################################################################################################
 warn = commands.getoutput("find " + directory + " -size +" + warningSize)
 ########################################################################################################################
